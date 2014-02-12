@@ -88,16 +88,16 @@
 			<key>comment</key>
 			<string>May as well have code strings called out as well.</string>
 			<key>end</key>
-			<string>}}}</string>
+			<string>}}}\n?</string>
 			<key>name</key>
 			<string>markup.raw</string>
 			<key>patterns</key>
 			<array>
 				<dict>
 					<key>match</key>
-					<string>.*</string>
+					<string>.*\n?</string>
 					<key>name</key>
-					<string>string.quoted.triple.code.Wiki</string>
+					<string>string.unquoted.code.Wiki</string>
 				</dict>
 			</array>
 		</dict>

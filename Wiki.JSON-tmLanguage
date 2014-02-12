@@ -41,8 +41,8 @@
     {
       "name": "markup.raw",
       "begin": "{{{",
-      "patterns": [ { "name": "string.quoted.triple.code.Wiki", "match": ".*" }],
-      "end":"}}}",
+      "patterns": [ { "name": "string.unquoted.code.Wiki", "match": ".*\\n?" }],
+      "end":"}}}\\n?",
       "comment": "May as well have code strings called out as well."
     },
     {  "name": "markup.bold.Wiki",
