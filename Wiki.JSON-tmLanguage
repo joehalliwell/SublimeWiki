@@ -1,3 +1,4 @@
+// [PackageDev] target_format: plist, ext: tmLanguage
 { "name": "Wiki",
   "scopeName": "source.Wiki",
   "fileTypes": ["wiki","sublime-wiki","swiki"],
