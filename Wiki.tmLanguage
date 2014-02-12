@@ -15,18 +15,12 @@
 	<key>patterns</key>
 	<array>
 		<dict>
-			<key>match</key>
-			<string>^\s*(\w+.+:\s*$\n?)</string>
-			<key>name</key>
-			<string>keyword.control.header.Wiki</string>
-		</dict>
-		<dict>
 			<key>comment</key>
 			<string>DEPRECATED Match WikiWords and make them into links.</string>
 			<key>match</key>
 			<string>([A-Z][a-z]+){2,}</string>
 			<key>name</key>
-			<string>string.markup.underline.link.internal.Wiki</string>
+			<string>entity.name.tag markup.underline.link.internal.Wiki</string>
 		</dict>
 		<dict>
 			<key>begin</key>
@@ -43,17 +37,51 @@
 					<key>match</key>
 					<string>[^]\[]+?</string>
 					<key>name</key>
-					<string>string.markup.underline.link.internal.Wiki</string>
+					<string>entity.name.tag markup.underline.link.internal.Wiki</string>
 				</dict>
 			</array>
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^=+</string>
+			<string>^=[^=]</string>
 			<key>end</key>
 			<string>$\n?</string>
 			<key>name</key>
-			<string>markup.heading</string>
+			<string>markup.heading.1</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>.*</string>
+					<key>name</key>
+					<string>entity.name.section</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>^==[^=]</string>
+			<key>end</key>
+			<string>$\n?</string>
+			<key>name</key>
+			<string>markup.heading.2</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>.*</string>
+					<key>name</key>
+					<string>entity.name.section</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>^===[^=]</string>
+			<key>end</key>
+			<string>$\n?</string>
+			<key>name</key>
+			<string>markup.heading.3</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -105,7 +133,7 @@
 			<key>comment</key>
 			<string>Markdown-style bold</string>
 			<key>match</key>
-			<string>(\*\*|__)(.*?)(\*\*|__)</string>
+			<string>\*\*.*?\*\*</string>
 			<key>name</key>
 			<string>markup.bold.Wiki</string>
 		</dict>
@@ -113,7 +141,7 @@
 			<key>comment</key>
 			<string>Markdown-style italics</string>
 			<key>match</key>
-			<string>[^\*_](\*|_)[^\*_]+?(\*|_)[^\*_]</string>
+			<string>//[^/]+?//</string>
 			<key>name</key>
 			<string>markup.italic.Wiki</string>
 		</dict>

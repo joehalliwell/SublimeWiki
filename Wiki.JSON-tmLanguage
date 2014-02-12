@@ -4,25 +4,41 @@
   "scopeName": "source.Wiki",
   "fileTypes": ["wiki","sublime-wiki","swiki"],
   "patterns": [
-    {  "name": "keyword.control.header.Wiki",
-       "match": "^\\s*(\\w+.+:\\s*$\\n?)"
-    },
-  	{  "name": "string.markup.underline.link.internal.Wiki",
+    // {  "name": "keyword.control.header.Wiki",
+    //    "match": "^\\s*(\\w+.+:\\s*$\\n?)"
+    // },
+  	{  "name": "entity.name.tag markup.underline.link.internal.Wiki",
   	   "match": "([A-Z][a-z]+){2,}",
        "comment": "DEPRECATED Match WikiWords and make them into links."
   	},
     {  "name": "",
        "begin": "\\[\\[",
        "patterns": [
-        { "name": "string.markup.underline.link.internal.Wiki",
+        { "name": "entity.name.tag markup.underline.link.internal.Wiki",
           "match": "[^]\\[]+?"
         }
         ],
        "end":   "]]",
        "comment": "Match [[Internal links]] and make them into links."
     },
-    {  "name": "markup.heading",
-       "begin": "^=+",
+    {  "name": "markup.heading.1",
+       "begin": "^=[^=]",
+       "patterns": [
+       {  "name": "entity.name.section",
+          "match": ".*"
+        }],
+       "end": "$\\n?"
+    },
+    {  "name": "markup.heading.2",
+       "begin": "^==[^=]",
+       "patterns": [
+       {  "name": "entity.name.section",
+          "match": ".*"
+        }],
+       "end": "$\\n?"
+    },
+    {  "name": "markup.heading.3",
+       "begin": "^===[^=]",
        "patterns": [
        {  "name": "entity.name.section",
           "match": ".*"
@@ -46,13 +62,12 @@
       "comment": "May as well have code strings called out as well."
     },
     {  "name": "markup.bold.Wiki",
-       "match": "(\\*\\*|__)(.*?)(\\*\\*|__)",
+       "match": "\\*\\*.*?\\*\\*",
        "comment": "Markdown-style bold"
     },
     {  "name": "markup.italic.Wiki",
-       "match": "[^\\*_](\\*|_)[^\\*_]+?(\\*|_)[^\\*_]",
+       "match": "//[^/]+?//",
        "comment": "Markdown-style italics"
-
     }
   ],
   "uuid": "14883dd8-b120-4a1e-a4c5-67c5e7815344"
