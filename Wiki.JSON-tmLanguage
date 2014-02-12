@@ -1,12 +1,26 @@
 { "name": "Wiki",
-  "scopeName": "text.Wiki",
+  "scopeName": "source.Wiki",
   "fileTypes": ["wiki","sublime-wiki","swiki"],
   "patterns": [
-  	{  "name": "markup.underline.link.internal.Wiki",
+    {  "name": "keyword.control.header.Wiki",
+       "match": "^\\s*(\\w+.+:\\s*$\\n?)"
+    },
+  	{  "name": "string.markup.underline.link.internal.Wiki",
   	   "match": "([A-Z][a-z]+){2,}",
        "comment": "Match WikiWords and make them into links."
   	},
-    {  "name": "markup.underline.link.external.Wiki",
+    {  "name": "",
+       "begin": "\\[\\[",
+       "patterns": [
+        { "name": "string.markup.underline.link.internal.Wiki",
+          "match": "[^]\\[]+?"
+        }
+        ],
+       "end":   "]]",
+       "comment": "Match [[Internal links]] and make them into links."
+    },
+
+    {  "name": "string.markup.underline.link.external.Wiki",
        "match": "((?:https?|ftp)://\\S+)",
        "comment": "Simplest possible web address matcher. If you think this is basic, you should see the one in the Markdown syntax file."
     },

@@ -9,10 +9,9 @@ class WikiLinkCommand(sublime_plugin.TextCommand):
         #find the cursor
         location = self.view.sel()[0]
         
-        #find the word under the cursor
-        word = self.view.substr(self.view.word(location.a)).replace("*", "")
+        # find the link under the cursor
         scope = self.view.substr(self.view.extract_scope(location.a)).replace("*", "")
-
+        
         if "link.external.Wiki" in self.view.scope_name(location.a):
                 sublime.status_message("try to open " + scope)
                 sublime.active_window().run_command('open_url', {"url": scope})
@@ -23,7 +22,7 @@ class WikiLinkCommand(sublime_plugin.TextCommand):
             #okay, we're good. Keep on keepin' on.        
             
             #compile the full file name and path.
-            new_file = os.path.join(directory,word+".wiki")
+            new_file = os.path.join(directory, scope + ".wiki")
 
             #debug section: uncomment to write to the console
             # print("Location: %d" % location.a)
@@ -40,9 +39,9 @@ class WikiLinkCommand(sublime_plugin.TextCommand):
             else:
                 #Create a new file and slap in the default text.
                 new_view = window.new_file()
-                default_text = "{0}\nWrite about {0} here.".format(word)
+                default_text = "# {0}\n\nWrite about {0} here.".format(scope)
                 new_view.run_command('append', {'characters': default_text})
-                new_view.set_name("%s.wiki" % word)
+                new_view.set_name("%s.wiki" % scope)
                 new_view.set_syntax_file("Packages/Wiki/Wiki.tmLanguage")
         else:
             sublime.status_message("Can only open WikiWords, email addresses or web addresses.")
