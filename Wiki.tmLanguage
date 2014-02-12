@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>comment</key>
+	<string>Based on the Creole format</string>
 	<key>fileTypes</key>
 	<array>
 		<string>wiki</string>
@@ -20,7 +22,7 @@
 		</dict>
 		<dict>
 			<key>comment</key>
-			<string>Match WikiWords and make them into links.</string>
+			<string>DEPRECATED Match WikiWords and make them into links.</string>
 			<key>match</key>
 			<string>([A-Z][a-z]+){2,}</string>
 			<key>name</key>
@@ -46,6 +48,23 @@
 			</array>
 		</dict>
 		<dict>
+			<key>begin</key>
+			<string>^=+</string>
+			<key>end</key>
+			<string>$\n?</string>
+			<key>name</key>
+			<string>markup.heading</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>.*</string>
+					<key>name</key>
+					<string>entity.name.section</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
 			<key>comment</key>
 			<string>Simplest possible web address matcher. If you think this is basic, you should see the one in the Markdown syntax file.</string>
 			<key>match</key>
@@ -65,13 +84,22 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>`</string>
+			<string>{{{</string>
 			<key>comment</key>
 			<string>May as well have code strings called out as well.</string>
 			<key>end</key>
-			<string>`</string>
+			<string>}}}</string>
 			<key>name</key>
-			<string>string.quoted.code.Wiki</string>
+			<string>markup.raw</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>.*</string>
+					<key>name</key>
+					<string>string.quoted.triple.code.Wiki</string>
+				</dict>
+			</array>
 		</dict>
 		<dict>
 			<key>comment</key>
